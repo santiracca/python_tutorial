@@ -34,3 +34,13 @@ def packdict(**nums):
         print(f'Packed: {k} = {nums[k]}')
 
 packdict(name="Santi", age=46, pet="Cat")
+
+
+#Unpacking a dictionary
+def unpackdict(name, age, pet):
+    print('Unpacking a dictionary');
+    print(f'Name = {name}');
+    print(f'Age = {age}');
+    print(f'Pet = {pet}')
+
+unpackdict(**d)
