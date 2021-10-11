@@ -37,8 +37,40 @@ class Inventory:
     def save(self):
       print('Saving inventory')
       with open('inventory.txt', 'w') as f:
-        json.dump
+        json.dump(self.pets, f)
       print('Saved!')
 
     def load(self):
-        pass
+        print('Loading Inventory')
+        if  not os.path.exists('inventory.txt'):
+            print('Skippin, nothing to load')
+            return
+        with open('inventory.txt', 'r') as f:
+            self.pets = json.load(f)
+        print("Loaded!")
+            
+
+
+def main():
+    inv = Inventory()
+
+    while True:
+        action = input("Actions: add, remove, list, save, exit:")
+        if action == 'exit':
+            break
+        
+        if action == 'list':
+            inv.display()
+        if action == 'save':
+            inv.save()
+        if action == 'add' or action == 'remove':
+            key = input('Enter an animal:')
+            qty = int(input("Enter the qty: "))
+            if action == 'add':
+                inv.add(key, qty)
+            if action == 'remove':
+                inv.remove(key, qty)
+    inv.save()
+
+if __name__ == "__main__":
+    main()
